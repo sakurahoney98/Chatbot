@@ -1,0 +1,158 @@
+-- Database: CHATBOT
+
+-- DROP DATABASE "CHATBOT";
+
+CREATE DATABASE "CHATBOT"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+
+
+-- Table: public.CHAMADO
+
+-- DROP TABLE public."CHAMADO";
+
+CREATE TABLE IF NOT EXISTS public."CHAMADO"
+(
+    cod_chamado integer NOT NULL,
+    assunto character varying COLLATE pg_catalog."default" NOT NULL,
+    descricao character varying COLLATE pg_catalog."default" NOT NULL,
+    cont_apoio integer NOT NULL,
+    atualizacao_chamado character varying[] COLLATE pg_catalog."default",
+    status_chamado integer NOT NULL,
+    equipamento_chamado integer NOT NULL,
+    atendente_chamado character varying COLLATE pg_catalog."default",
+    sala_chamado character varying COLLATE pg_catalog."default" NOT NULL,
+    hora_abertura time without time zone NOT NULL,
+    data_abertura date NOT NULL,
+    CONSTRAINT "CAHAMADO_pkey" PRIMARY KEY (cod_chamado),
+    CONSTRAINT "CHAMADO_EQUIPAMENTO" FOREIGN KEY (equipamento_chamado)
+        REFERENCES public."EQUIPAMENTO" (cod_equipamento) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT "CHAMADO_LOGIN" FOREIGN KEY (atendente_chamado)
+        REFERENCES public."LOGIN" (id_login) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT "CHAMADO_SALA" FOREIGN KEY (sala_chamado)
+        REFERENCES public."SALA" (cod_sala) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT "CHAMADO_STATUS" FOREIGN KEY (status_chamado)
+        REFERENCES public."STATUS" (cod_status) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."CHAMADO"
+    OWNER to postgres;
+
+
+
+-- Table: public.EQUIPAMENTO
+
+-- DROP TABLE public."EQUIPAMENTO";
+
+CREATE TABLE IF NOT EXISTS public."EQUIPAMENTO"
+(
+    cod_equipamento integer NOT NULL,
+    nome_equipamento character varying COLLATE pg_catalog."default" NOT NULL,
+    lami boolean,
+    sala boolean,
+    CONSTRAINT "EQUIPAMENTO_pkey" PRIMARY KEY (cod_equipamento)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."EQUIPAMENTO"
+    OWNER to postgres;
+
+
+
+-- Table: public.LOGIN
+
+-- DROP TABLE public."LOGIN";
+
+CREATE TABLE IF NOT EXISTS public."LOGIN"
+(
+    id_login character varying COLLATE pg_catalog."default" NOT NULL,
+    senha character varying COLLATE pg_catalog."default" NOT NULL,
+    nome_user character varying COLLATE pg_catalog."default" NOT NULL,
+    sobrenome_user character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "LOGIN_pkey" PRIMARY KEY (id_login)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."LOGIN"
+    OWNER to postgres;
+
+
+-- Table: public.SALA
+
+-- DROP TABLE public."SALA";
+
+CREATE TABLE IF NOT EXISTS public."SALA"
+(
+    nome_sala character varying COLLATE pg_catalog."default" NOT NULL,
+    tipo_sala integer NOT NULL,
+    cod_sala character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "SALA_pkey" PRIMARY KEY (cod_sala),
+    CONSTRAINT "SALA_TIPO_SALA" FOREIGN KEY (tipo_sala)
+        REFERENCES public."TIPO_SALA" (cod_tipo_sala) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."SALA"
+    OWNER to postgres;
+
+
+
+-- Table: public.STATUS
+
+-- DROP TABLE public."STATUS";
+
+CREATE TABLE IF NOT EXISTS public."STATUS"
+(
+    cod_status integer NOT NULL,
+    descricao_status character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "STATUS_pkey" PRIMARY KEY (cod_status)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."STATUS"
+    OWNER to postgres;
+
+
+-- Table: public.TIPO_SALA
+
+-- DROP TABLE public."TIPO_SALA";
+
+CREATE TABLE IF NOT EXISTS public."TIPO_SALA"
+(
+    cod_tipo_sala integer NOT NULL,
+    nome_tipo_sala character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "TIPO_SALA_pkey" PRIMARY KEY (cod_tipo_sala)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."TIPO_SALA"
+    OWNER to postgres;
+

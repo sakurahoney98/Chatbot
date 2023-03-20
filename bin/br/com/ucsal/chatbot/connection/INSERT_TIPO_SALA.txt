@@ -1,0 +1,6 @@
+INSERT INTO public."TIPO_SALA"(
+	cod_tipo_sala, nome_tipo_sala)
+	VALUES
+
+(1,'LAMI'),
+(2,'SALA DE AULA')

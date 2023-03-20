@@ -1,0 +1,8 @@
+INSERT INTO public."STATUS"(
+	cod_status, descricao_status)
+	VALUES
+
+(1,'ABERTO'),
+(2,'EM ATENDIMENTO'),
+(4,'CANCELADO'),
+(3,'RESOLVIDO')

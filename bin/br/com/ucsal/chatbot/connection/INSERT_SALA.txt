@@ -1,0 +1,14 @@
+INSERT INTO public."SALA"(
+	nome_sala, tipo_sala, cod_sala)
+	VALUES
+
+('LAMI 1',1,'B401'),
+('LAMI 2',1,'B402'),
+('LAMI 3',1,'B403'),
+('LAMI 4',1,'B404'),
+('LAMI 5',1,'B405'),
+('Sala 406',2,'B406'),
+('Sala 407',2,'B407'),
+('Sala 408',2,'B408'),
+('Sala 409',2,'B409'),
+('Sala 410',2,'B410')

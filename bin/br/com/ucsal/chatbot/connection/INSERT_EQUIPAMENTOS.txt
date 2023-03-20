@@ -1,0 +1,11 @@
+INSERT INTO public."EQUIPAMENTO"(
+	cod_equipamento, nome_equipamento, lami, sala) 
+VALUES
+(1,'COMPUTADOR',True,False),
+(6,'CONFIGURAÇÃO DE USUÁRIO',True,False),
+(7,'INSTALAÇÃO DE SOFTWARE',True,False),
+(2,'ARCONDICIONADO',True,True),
+(3,'PROJETOR',True,True),
+(5,'SOM',True,True),
+(0,'OUTROS',True,True),
+(4,'INTERNET',True,False)
